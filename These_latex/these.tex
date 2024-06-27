@@ -1,0 +1,107 @@
+\documentclass[a4paper,12pt,twoside,openright]{book}
+\usepackage{preamble}
+\usepackage{pgf}
+
+
+\author{Yohann Faure}
+\title{\centering
+	\textbf{
+		\LARGE 
+			\textcolor{BrickRed}{Dynamique d'une faille en laboratoire}\\
+		\vspace{.3cm}
+		\Large
+			\textcolor{black}{~~Étude de l'influence d'un milieu granulaire}
+	}
+}
+
+
+
+\begin{document}
+
+
+%\include{PDG.tex}
+%\thispagestyle{empty}
+
+\include{PDG.tex}
+%\include{PDG_2.tex}
+
+%\newpage
+%~~
+%\newpage
+%~~
+%\newpage
+\newpage
+
+
+
+\newgeometry{twoside,inner=2.5cm,outer=1.5cm,top=2cm, bottom=1.5cm, headsep=0.5cm}
+\pagestyle{fancy}
+\setlength{\headheight}{20pt}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\rightmark}
+\fancyhead[RE]{\leftmark}
+\fancyfoot{}
+
+
+%\cleardoublepage
+
+\fancypagestyle{plain}{% first page of chapters
+    \fancyhf{}
+    \fancyhead[LE,RO]{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+\include{chap_resume.tex}
+
+\newpage
+
+\include{chap_abstract.tex}
+\newpage
+
+%\include{chap_remerciements.tex}
+
+
+\fancypagestyle{plain}{% first page of chapters
+    \fancyhf{}
+    \fancyhead[LE,RO]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\dominitoc
+\tableofcontents
+
+
+%\include{chap_avant_propos.tex}
+
+\include{chap_intro.tex}
+
+\include{chap_etat_art.tex}
+
+\include{chap_dev_exp.tex}
+
+\include{chap_article.tex}
+
+\include{chap_conclusion.tex}
+
+
+% table des figures
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Table des figures}
+\listoffigures
+
+% table des symboles
+\include{chap_symboles.tex}
+
+% bibliographie
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliographie}
+\printbibliography
+%\newpage
+%\thispagestyle{empty}
+%~
+%
+%\cleartoleftclearpage
+%\include{chap_resume.tex}
+
+
+\end{document}

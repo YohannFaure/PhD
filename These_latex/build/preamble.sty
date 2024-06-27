@@ -1,0 +1,202 @@
+\ProvidesPackage{preamble}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{csquotes}
+\usepackage[T1]{fontenc}
+\usepackage[twoside,a4paper,inner=3.5cm,outer=1.5cm,vmargin=1.0cm]{geometry}%2,5cm, 2,5cm
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[separate-uncertainty=true]{siunitx}
+\usepackage{titlesec}
+%\usepackage{physics}
+\usepackage{stmaryrd}
+\usepackage{placeins}
+\usepackage{layout}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage[linktocpage]{hyperref}
+\usepackage[overload]{empheq}
+\usepackage{multirow}
+\usepackage[mathscr]{euscript}
+\usepackage{relsize}
+\usepackage{tabularx}
+\usepackage{ltablex}
+
+%--------- Graphics-----
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage[Lenny]{fncychap}
+\usepackage{minitoc}
+
+
+
+\setcounter{tocdepth}{1}
+\setcounter{minitocdepth}{3}
+\setcounter{secnumdepth}{5}
+\usepackage[titles]{tocloft}
+\usepackage[dvipsnames]{xcolor}
+
+
+
+
+
+%\usepackage{svg}
+%\svgsetup{inkscapeexe="C:/Program Files/Inkscape/bin/inkscape.exe"}
+%\svgsetup{inkscapeexe="/usr/bin/inkscape"}
+
+%\usepackage{svg-extract}
+
+\captionsetup{width=0.96\textwidth} % Adjust the width of captions
+
+
+
+\ChTitleVar{\Huge\bfseries}
+\ChNameVar{\large\bfseries}
+%\ChNumVar{\fontsize{60}{62}\bfseries}
+
+\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{\vspace*{-20\p@}}{}{}
+\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{\vspace*{-20\p@}}{}{}
+
+
+\makeatletter
+\def\@makeschapterhead#1{%
+  \vspace*{20\p@}%
+  {\parindent\z@\raggedright\normalfont\interlinepenalty\@M
+   \DOTIS{#1}%
+   \vskip-30\p@ 
+   \kern-.4\p@
+   \hrule
+   \vskip50\p@}%
+}
+\makeatother
+
+
+
+
+\renewcommand{\mtctitle}{Contenu du chapitre \thechapter}
+\renewcommand{\thesection}{\arabic{section}}
+\hypersetup{
+    citecolor=violet,
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={PhD Y. Faure}
+    }
+
+
+%\titleformat{\chapter}[display]
+%  {\bfseries\Large}
+%  {\filright\MakeUppercase{\chaptertitlename} \Huge\thechapter}
+%  {1ex}
+%  {\titlerule\vspace{1ex}\filleft}
+%  [\vspace{1ex}\titlerule]
+
+\newcommand{\myparagraph}[1]{\paragraph*{#1}\mbox{}\\}
+
+
+
+
+%-----------Biblio------
+\usepackage[backend=bibtex, style=phys, sorting=none, maxnames=2, doi=false]{biblatex}
+
+
+
+\addbibresource{thesebib.bib} 
+
+
+%---------Shortcut--------
+\newcommand{\myfig}[3]{
+\begin{figure}[htb]
+\centering	
+\includegraphics[width=#2\textwidth]{#1}
+\caption{#3}
+\end{figure}
+}
+
+
+%\newcommand{\mysvg}[3]{
+%\begin{figure}[htb]
+%\centering	
+%\includesvg[width=#2\textwidth]{#1}
+%\caption{#3}
+%\end{figure}
+%}
+%---------Typing----------
+\newcommand{\remarque}[1]{\textcolor{red}{#1}}
+\newcommand{\note}[1]{\textcolor{green}{#1}}
+\newcommand{\nm}[1]{\SI{#1}{\nano\meter}}
+\newcommand{\um}[1]{\SI{#1}{\micro\meter}}
+\newcommand{\cn}{[\textit{\textcolor{red}{citation needed}}]}
+\newcommand{\siprod}[2]{\qtyproduct[product-units=single]{#1}{#2}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\sisetup{inter-unit-product = .}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\diff}[2]{\frac{\mathrm{d} #1 }{\mathrm{d} #2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1 }{\partial #2}}
+\newcommand{\bitem}{\item[$\boldsymbol{\cdot}$]}
+\newcommand{\mean}[1]{\left\langle {#1} \right\rangle}
+
+\def\title#1{\gdef\@title{#1}\gdef\THETITLE{#1}}
+
+\newcommand{\ceil}[1]{\left\lceil {#1} \right\rceil}
+\newcommand{\floor}[1]{\left\lfloor {#1} \right\rfloor}
+
+
+
+\makeatletter
+\def\p@section{\thechapter\,$\cdot$\,}
+\def\p@subsection{\thechapter\,$\cdot$\,}
+\def\p@subsubsection{\thechapter\,$\cdot$\,}
+\makeatother
+
+\let\oldcite\cite
+\renewcommand{\cite}[1]{\mbox{\oldcite{#1}}}
+
+
+%\newcommand{\ptmed}{$\textperiodcentered$}
+\newcommand{\ptmed}{$\cdot$}
+
+
+\makeatletter
+\newcommand{\newparallel}{\mathrel{\mathpalette\new@parallel\relax}}
+\newcommand{\new@parallel}[2]{%
+  \begingroup
+  \sbox\z@{$#1T$}% get the height of an uppercase letter
+  \resizebox{!}{\ht\z@}{\raisebox{\depth}{$\m@th#1/\mkern-5mu/$}}%
+  \endgroup
+}
+\makeatother
+\renewcommand{\parallel}{{\newparallel}}
+
+\newcommand*\cleartoleftpage{%
+  \clearpage
+  \ifodd\value{page}\hbox{}\newpage\fi
+}
+
+
+\newcommand*\cleartoleftclearpage{%
+  \clearpage
+  \thispagestyle{empty}
+  \ifodd\value{page}\hbox{}\newpage\thispagestyle{empty}
+\fi
+}
+
+
+
+
+%\renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
+
+
+
+
+
+
+
+
+
+
+
